@@ -1,0 +1,8 @@
+{
+  "name": "NFC Test App",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "86e79ceb"
+}

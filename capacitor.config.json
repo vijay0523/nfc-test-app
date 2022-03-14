@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "NFC Test App",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
