@@ -1,0 +1,28 @@
+ion-card{
+    position: relative;
+    transition: transform .2s ease-in-out;
+    animation: bobble 6s infinite;
+}
+
+@keyframes bobble {
+    0% {
+        transform: translate3d(40px, 0px, 0px);
+        animation-timing-function: ease-in;
+    }
+    50% {
+        transform: translate3d(150px, 0px, 0px);
+        animation-timing-function: ease-out;
+    }
+    60% {
+        transform: translate3d(150px, 0px, 0px);
+        animation-timing-function: ease-out;
+    }
+    90% {
+        transform: translate3d(40px, 0px, 0px);
+        animation-timing-function: ease-out;
+    }
+    100% {
+        transform: translate3d(40px, 0px, 0px);
+        animation-timing-function: ease-out;
+    }
+}
