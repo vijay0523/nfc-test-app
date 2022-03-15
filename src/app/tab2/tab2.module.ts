@@ -16,11 +16,8 @@ import { Tab2PageRoutingModule } from './tab2-routing.module';
     FormsModule,
     ExploreContainerComponentModule,
     Tab2PageRoutingModule,
-    // NFC,
-    // Ndef
   ],
   providers: [NFC, Ndef],
-  declarations: [Tab2Page]//, Ndef, NFC],
-  // exports: [Ndef, NFC]
+  declarations: [Tab2Page]
 })
 export class Tab2PageModule {}

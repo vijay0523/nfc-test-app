@@ -9,14 +9,16 @@ import { NFC, Ndef } from '@awesome-cordova-plugins/nfc/ngx';
 export class Tab2Page {
 
   readerMode$: any;
+  tagContent: any;
+  tagID: string;
 
   constructor(private nfc: NFC, private ndef: Ndef) {
     // Read NFC Tag - Android
     // Once the reader mode is enabled, any tags that are scanned are sent to the subscriber
     let flags = this.nfc.FLAG_READER_NFC_A | this.nfc.FLAG_READER_NFC_V;
     this.readerMode$ = this.nfc.readerMode(flags).subscribe(
-        tag => console.log(JSON.stringify(tag)),
-        err => console.log('Error reading tag', err)
+        tag => {console.log(JSON.stringify(tag)); this.tagContent = JSON.stringify(tag); this.tagID = tag.id[0].toString(16)+tag.id[1].toString(16)+tag.id[2].toString(16)+tag.id[3].toString(16)},
+        err => {console.log('Error reading tag', err); this.tagContent = "ERROR " + err}
     );
 
     // Read NFC Tag - iOS
