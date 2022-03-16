@@ -1,4 +1,4 @@
-ion-card{
+.nfc-card{
     position: relative;
     transition: transform .2s ease-in-out;
     animation: bobble 6s infinite;
@@ -6,7 +6,7 @@ ion-card{
 
 @keyframes bobble {
     0% {
-        transform: translate3d(40px, 0px, 0px);
+        transform: translate3d(30px, 0px, 0px);
         animation-timing-function: ease-in;
     }
     50% {
@@ -18,11 +18,32 @@ ion-card{
         animation-timing-function: ease-out;
     }
     90% {
-        transform: translate3d(40px, 0px, 0px);
+        transform: translate3d(30px, 0px, 0px);
         animation-timing-function: ease-out;
     }
     100% {
-        transform: translate3d(40px, 0px, 0px);
+        transform: translate3d(30px, 0px, 0px);
         animation-timing-function: ease-out;
     }
 }
+
+.scan-box {
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 100vmax rgb(0, 0, 0, 0.5);
+    content: "";
+    display: block;
+    left: 50%;
+    height: 300px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+  }
+  .scan-button {
+    margin: 0px;
+    position: absolute;
+    bottom: 100px;
+    width: 100vw;
+    height: 50px;
+    z-index: 11;
+  }

@@ -9,7 +9,9 @@ import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 export class Tab3Page {
 
   scanActive: boolean = false;
-  QRcontent: any;
+  QRcontent: string;
+  registration_no: string;
+  name: string;
 
   constructor() {
 
@@ -38,9 +40,16 @@ export class Tab3Page {
 
       if (result.hasContent) {
         this.scanActive = false;
-        alert(result.content); //The QR content will come out here
-        this.QRcontent = result.content;
-        //Handle the data as your heart desires here
+        if(result.content.length < 30){
+          alert('Please scan a valid QR code');
+          this.QRcontent = 'Please scan a valid QR code';
+        }
+        else {
+          this.registration_no = result.content.split('Register No : ')[1].split(',')[0];
+          this.name = result.content.split('Name : ')[1].split(',')[0];
+          // alert(result.content); //The QR content will come out here
+          this.QRcontent = '';
+        }
       } else {
         alert('NO DATA FOUND!');
         this.QRcontent = 'ERR: NO DATA';

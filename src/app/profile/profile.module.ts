@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ProfilePage } from './profile.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
+import { NFC, Ndef } from "@awesome-cordova-plugins/nfc/ngx";
 
 import { ProfilePageRoutingModule } from './profile-routing.module';
 
@@ -15,6 +16,7 @@ import { ProfilePageRoutingModule } from './profile-routing.module';
     ExploreContainerComponentModule,
     ProfilePageRoutingModule
   ],
+  providers: [NFC, Ndef],
   declarations: [ProfilePage]
 })
 export class ProfilePageModule {}

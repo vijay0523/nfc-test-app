@@ -6,28 +6,84 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" [style.--background]="scanActive?'#00000000':'#ffffff'">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Profile condense</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <br>
-  <h3 style="width: 100%;text-align: center;">Scan your Student ID Card</h3>
-  <br>
-  <br>
+  <section *ngIf="nfc_phase">
+    <br>
+    <div class="ion-text-end" style="margin: auto 10px;">
+      <ion-button fill="outline" style="width: 100px;margin-right: 0px;" [disabled]="!nfc_check" (click)="nfc_phase=false;qr_phase=true;">Next ></ion-button>
+    </div>
+    <h3 style="width: 100%;text-align: center;">Scan your Student ID Card</h3>
+    <br>
+    <br>
 
-  <ion-card style="height: 200px; border-radius: 15px;">
-    <ion-card-content></ion-card-content>
-  </ion-card>
+    <ion-card class="nfc-card" style="height: 200px; border-radius: 15px;">
+      <ion-card-content></ion-card-content>
+    </ion-card>
 
-  <h6 style="width: 100%;text-align: center;padding: 15px;">Please place your Student ID card behind your phone as shown above</h6>
+    <h6 style="width: 100%;text-align: center;padding: 15px;">Please place your Student ID card behind your phone as shown above</h6>
 
-  <br>
-  <div style="text-align: center;">
-    <ion-spinner style="transform: scale(1.5);" name="crescent"></ion-spinner>
-  </div>
+    <br>
+    <div style="text-align: center;">
+      <ion-spinner *ngIf="!nfc_check" style="transform: scale(1.5);" name="crescent"></ion-spinner>
+      <ion-icon *ngIf="nfc_check" style="transform: scale(3);" name="checkmark-done-outline"></ion-icon>
+    </div>
+  </section>
+
+  <section *ngIf="qr_phase">
+    <br [hidden]="scanActive">
+    <div class="ion-text-end" style="margin: auto 10px;" [hidden]="scanActive">
+      <ion-button fill="outline" style="width: 100px;margin-right: 0px;" [disabled]="!qr_check" (click)="qr_phase=false;nfc_phase=false">Next ></ion-button>
+    </div>
+    <h3 style="width: 100%;text-align: center;" [hidden]="scanActive">Scan QR code from ID Card</h3>
+    <br [hidden]="scanActive">
+
+    <ion-card style="height: 60vh;width: 70%; border-radius: 15px;margin: auto;" [hidden]="scanActive">
+      <ion-card-content>
+
+        <br>
+        <br>
+
+        <ion-card style="height: 80px;width: 80px;">
+          <img style="opacity: 0.5;" src="../../assets/qr_dummy.png">
+        </ion-card>
+
+      </ion-card-content>
+    </ion-card>
+
+    <h6 style="width: 100%;text-align: center;padding: 15px;" [hidden]="scanActive">Scan the QR Code located on your ID Card as shown above</h6>
+
+    <ion-button expand="full" (click)="startScanner()" [hidden]="scanActive" style="margin: 10px;">
+      SCAN
+    </ion-button>
+    <ion-row class="scan-button" [hidden]="!scanActive">
+      <ion-col class="ion-no-padding">
+        <ion-button expand="full" (click)="stopScanner()">Stop</ion-button>
+      </ion-col>
+    </ion-row>
+    <div class="scan-box" [hidden]="!scanActive"></div>
+
+    <p [hidden]="scanActive" style="text-align: center; width: 100%;"><b>{{QRcontent}}</b></p>
+
+    <div style="text-align: center;">
+      <ion-icon *ngIf="qr_check" style="transform: scale(3);" name="checkmark-done-outline"></ion-icon>
+    </div>
+
+  </section>
+
+  <section *ngIf="!nfc_phase && !qr_phase">
+
+    <p [hidden]="scanActive" style="text-align: center; width: 100%;">Tag ID: <b>{{tagID}}</b></p>
+    <p [hidden]="scanActive" style="text-align: center; width: 100%;"><b>{{QRcontent}}</b></p>
+    <p [hidden]="scanActive" style="text-align: center; width: 100%;">Registration Number: <b>{{registration_no}}</b></p>
+    <p [hidden]="scanActive" style="text-align: center; width: 100%;">Name: <b>{{name}}</b></p>
+
+  </section>
 
 
 </ion-content>

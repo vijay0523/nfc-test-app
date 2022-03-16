@@ -23,7 +23,9 @@
   </ion-row>
   <div class="scan-box" [hidden]="!scanActive"></div>
 
-  <p [hidden]="scanActive" style="text-align: center; width: 100%;">QR Data: <b>{{QRcontent}}</b></p>
+  <p [hidden]="scanActive" style="text-align: center; width: 100%;"><b>{{QRcontent}}</b></p>
+  <p [hidden]="scanActive" style="text-align: center; width: 100%;">Registration Number: <b>{{registration_no}}</b></p>
+  <p [hidden]="scanActive" style="text-align: center; width: 100%;">Name: <b>{{name}}</b></p>
 
   <!-- <app-explore-container name="Tab 3 page"></app-explore-container> -->
 </ion-content>
